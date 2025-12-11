@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Pedido - La Mamasa</title>
+  <link rel="stylesheet" href="../../styles/cliente/pedido.css" />
+
+</head>
+<body>
+  <!-- Header Superior -->
+  <div class="top-header">
+    <div class="logo-title">
+      <h1>La Mamasa</h1>
+    </div>
+  </div>
+
+  <!-- Barra de Navegación -->
+  <div class="nav-header">
+    <div class="nav-header-content">
+      <nav class="nav-links">
+        <a href="/pages/cliente/inicio.html">Inicio</a>
+        <a href="/pages/cliente/menu.html">Menú</a>
+        <a href="/pages/cliente/pedido.html" class="active">Pedidos</a>
+        <a href="/pages/cliente/reservas.html">Reservas</a>
+      </nav>
+      <div class="nav-user-actions">
+        <a href="/pages/cliente/login.html" class="user-icon-link" id="userLinkNav">
+          <span class="user-icon">👤</span>
+          <span id="userTextNav">Login</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="container">
+
+   
+    <!-- CARRITO -->
+    <section id="carrito-servicio-section">
+      <div class="order-content">
+        <h1 class="order-title">Tu Pedido</h1>
+        <div id="carrito"></div>
+        <div class="pagination-dots">
+          <span class="dot active"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+      </div>
+
+      <div class="service-selection" style="margin-top: 2rem;">
+        <h3>Seleccione el tipo de servicio</h3>
+        <div class="servicio-botones">
+          <button class="servicio-btn" data-tipo="local">En el local</button>
+          <button class="servicio-btn" data-tipo="llevar">Para llevar</button>
+          <button class="servicio-btn" data-tipo="domicilio">A domicilio</button>
+        </div>
+      </div>
+
+      <button id="btn-regresar-menu" class="btn-regresar">← Regresar al Menú</button>
+    </section>
+
+    <!-- CLIENTE -->
+    <section id="cliente-section" class="oculto"><br><br>
+      <h2>Datos del Cliente</h2>
+      <input id="nombre" placeholder="Nombre completo">
+      <input id="telefono" placeholder="Teléfono"><br><br>
+      <div class="botones">
+        <button id="btn-regresar-cliente">⬅ Regresar</button>
+        <button id="btn-confirmar-datos">Continuar</button>
+      </div>
+    </section>
+
+    <!-- DIRECCIÓN -->
+    <section id="direccion-section" class="oculto"><br><br>
+      <h2>Dirección de Entrega</h2>
+      <input id="calle" placeholder="Calle o Avenida">
+      <input id="referencia" placeholder="Referencia">
+      <div class="botones">
+        <button id="btn-regresar-direccion">⬅ Regresar</button>
+        <button id="btn-confirmar-direccion">Continuar</button>
+      </div>
+    </section>
+
+  
+<!-- RESUMEN DEL CLIENTE Y DEL PEDIDO -->
+<section id="resumen-section" class="oculto">
+  <div class="resumen-container">
+    <h1 class="resumen-title">Resumen</h1>
+    <div id="resumen"></div>
+    <div class="botones" style="margin-top: 2rem;">
+      <button id="btn-regresar-resumen">⬅ Regresar</button>
+      <button id="btn-continuar-resumen">Continuar</button>
+    </div>
+  </div>
+</section>
+
+
+    <!-- MÉTODO DE PAGO -->
+    <section id="pago-section" class="oculto"><br><br>
+      <h2>Método de Pago</h2>
+      <button class="pago-btn" data-metodo="efectivo">Efectivo</button>
+      <button class="pago-btn" data-metodo="yape">Yape</button><br><br>
+      <div id="pago-extra"></div><br><br>
+      <div class="botones">
+        <button id="btn-regresar-pago">⬅ Regresar</button>
+        <button id="btn-enviar-pedido">Enviar Pago</button>
+      </div>
+    </section>
+
+   
+
+<!-- SEGUIMIENTO PAGO -->
+<section id="pantalla-seguimiento-pago" class="oculto">
+  <h2>Seguimiento de tu pago</h2>
+  <div class="timeline">
+    <div class="step" id="step-pendiente-pago">
+      <div class="circle activo">1</div>
+      <p>Pendiente</p>
+    </div>
+    <div class="step" id="step-completado-pago">
+      <div class="circle">2</div>
+      <p>Completado</p>
+    </div>
+  </div>
+
+  <p id="estado-texto-pago">⏳ Tu pago está pendiente de confirmación.</p>
+
+  <div class="loader" id="loader-pago"></div>
+
+ <button id="btn-continuar-pago" disabled>➡ Continuar</button>
+
+</section>
+
+
+<!-- SEGUIMIENTO PEDIDO -->
+<section id="pantalla-seguimiento-pedido" class="oculto">
+  <h2>📍 Estado de tu pedido</h2>
+
+  <div id="tracking-timeline">
+    <div class="step" id="step-pendiente">⏳ Pendiente — Tu pedido está en espera</div>
+    <div class="step" id="step-preparacion">👨‍🍳 En preparación — Estamos preparando tu pedido</div>
+    <div class="step" id="step-entregado">🎁 Entregado — Pedido completado</div>
+  </div>
+
+  <div id="botones-seguimiento" style="margin-top: 2rem; display: flex; justify-content: center; gap: 1rem;">
+    <button id="btn-finalizar-pedido" class="oculto" style="background-color: #28a745; color: white; padding: 12px 24px; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer; font-weight: bold;">
+      ✅ Finalizar
+    </button>
+    <button id="btn-volver-inicio-pedido">Volver al inicio</button>
+  </div>
+</section>
+    </div>
+  </div>
+
+  <script src="../../scripts/shared/config.js"></script>
+  <script src="../../scripts/shared/auth.js"></script>
+  <script src="../../scripts/shared/clienteAuth.js"></script>
+  <script src="../../scripts/shared/clienteNav.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../../scripts/cliente/pedido.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: frontend-mamasa
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      # URLs de los servicios backend en Render
+      - key: USUARIOS_SERVICE_URL
+        value: https://servicio-usuarios-nstf.onrender.com
+      - key: MENU_SERVICE_URL
+        sync: false  # Configurar manualmente cuando esté desplegado
+      - key: PEDIDOS_SERVICE_URL
+        value: https://servicio-pedidos-nhuu.onrender.com
+      - key: PAGOS_SERVICE_URL
+        value: https://servicio-pagos.onrender.com
+      - key: RESERVAS_SERVICE_URL
+        value: https://servicio-reservas.onrender.com
+      - key: NOTIFICACIONES_SERVICE_URL
+        sync: false  # Configurar manualmente cuando esté desplegado
+

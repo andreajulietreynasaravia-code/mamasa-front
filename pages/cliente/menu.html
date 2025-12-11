@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menú | La Mamasa</title>
+    <link rel="stylesheet" href="../../styles/cliente/menu.css" />
+</head>
+<body>
+  <!-- Header Superior -->
+  <div class="top-header">
+    <div class="logo-title">
+      <h1>La Mamasa</h1>
+    </div>
+  </div>
+
+  <!-- Barra de Navegación -->
+  <div class="nav-header">
+    <div class="nav-header-content">
+      <nav class="nav-links">
+        <a href="/pages/cliente/inicio.html">Inicio</a>
+        <a href="/pages/cliente/menu.html" class="active">Menú</a>
+        <a href="/pages/cliente/pedido.html">Pedidos</a>
+        <a href="/pages/cliente/reservas.html">Reservas</a>
+      </nav>
+      <div class="nav-user-actions">
+        <a href="/pages/cliente/login.html" class="user-icon-link" id="userLinkNav">
+          <span class="user-icon">👤</span>
+          <span id="userTextNav">Login</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <main id="menuContainer">
+      <div class="loading">Cargando menú...</div>
+    </main>
+    <button id="verCarrito">Ver mi pedido</button>
+  </div>
+
+    <script src="../../scripts/shared/config.js"></script>
+    <script src="../../scripts/shared/auth.js"></script>
+    <script src="../../scripts/shared/clienteAuth.js"></script>
+    <script src="../../scripts/shared/clienteNav.js"></script>
+    <script src="../../scripts/cliente/menu.js"></script>
+</body>
+</html>

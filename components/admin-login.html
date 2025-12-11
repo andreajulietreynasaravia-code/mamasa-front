@@ -1,0 +1,27 @@
+<!-- Componente de login para administrador -->
+<!-- Este componente se puede incluir en todas las páginas del admin -->
+
+<div class="login-container" id="loginContainer">
+  <div class="icon">
+    <i class="fas fa-user-shield"></i>
+  </div>
+  <h2>Panel Administrador</h2>
+  <p class="subtitle">Acceso exclusivo para administradores</p>
+  <form id="adminLoginForm">
+    <div class="input-group">
+      <i class="fas fa-envelope"></i>
+      <input type="email" id="correo" placeholder="Correo electrónico" required />
+    </div>
+    <div class="input-group">
+      <i class="fas fa-lock"></i>
+      <input type="password" id="contrasena" placeholder="Contraseña" required />
+    </div>
+    <button type="submit">
+      <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+    </button>
+  </form>
+  <p id="mensaje"></p>
+</div>
+
+
+

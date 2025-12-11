@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mis Reservas | La Mamasa</title>
+  <link rel="stylesheet" href="../../styles/cliente/reservas.css" />
+</head>
+<body>
+  <!-- Header Superior -->
+  <div class="top-header">
+    <div class="logo-title">
+      <h1>La Mamasa</h1>
+    </div>
+  </div>
+
+  <!-- Barra de Navegación -->
+  <div class="nav-header">
+    <div class="nav-header-content">
+      <nav class="nav-links">
+        <a href="/pages/cliente/inicio.html">Inicio</a>
+        <a href="/pages/cliente/menu.html">Menú</a>
+        <a href="/pages/cliente/pedido.html">Pedidos</a>
+        <a href="/pages/cliente/reservas.html" class="active">Reservas</a>
+      </nav>
+      <div class="nav-user-actions">
+        <a href="/pages/cliente/login.html" class="user-icon-link" id="userLinkNav">
+          <span class="user-icon">👤</span>
+          <span id="userTextNav">Login</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="container">
+      <div class="page-header">
+        <h1>📅 Mis Reservas</h1>
+        <p>Gestiona y consulta todas tus reservas</p>
+      </div>
+
+      <!-- Estadísticas -->
+      <div class="stats">
+        <div class="stat-card">
+          <h3>Total Reservas</h3>
+          <div class="numero" id="total">0</div>
+        </div>
+        <div class="stat-card">
+          <h3>Pendientes</h3>
+          <div class="numero" id="pendientes">0</div>
+        </div>
+        <div class="stat-card">
+          <h3>Confirmadas</h3>
+          <div class="numero" id="confirmadas">0</div>
+        </div>
+        <div class="stat-card">
+          <h3>Completadas</h3>
+          <div class="numero" id="completadas">0</div>
+        </div>
+      </div>
+
+      <!-- Filtros -->
+      <div class="filtros">
+        <div class="filtro-group">
+          <label for="fechaFiltro">Fecha:</label>
+          <input type="date" id="fechaFiltro">
+        </div>
+        <div class="filtro-group">
+          <label for="estadoFiltro">Estado:</label>
+          <select id="estadoFiltro">
+            <option value="">Todos los estados</option>
+            <option value="pendiente">Pendientes</option>
+            <option value="confirmada">Confirmadas</option>
+            <option value="cancelada">Canceladas</option>
+            <option value="completada">Completadas</option>
+          </select>
+        </div>
+        <div class="filtro-group">
+          <label for="tipoFiltro">Tipo:</label>
+          <select id="tipoFiltro">
+            <option value="">Todos los tipos</option>
+            <option value="desayuno">Desayuno</option>
+            <option value="almuerzo">Almuerzo</option>
+            <option value="cena">Cena</option>
+            <option value="merienda">Merienda</option>
+          </select>
+        </div>
+        <div class="filtro-buttons">
+          <button onclick="aplicarFiltros()" class="btn-filtrar">🔍 Filtrar</button>
+          <button onclick="limpiarFiltros()" class="btn-limpiar">🔄 Limpiar</button>
+          <button onclick="cargarReservas()" class="btn-actualizar" title="Actualizar lista">🔄 Actualizar</button>
+        </div>
+      </div>
+
+      <!-- Tabla de Reservas -->
+      <div class="table-container">
+        <table id="tablaReservas">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Fecha</th>
+              <th>Hora</th>
+              <th>Personas</th>
+              <th>Tipo</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="7" style="text-align: center; padding: 3rem; color: #666;">
+                Cargando reservas...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Botón para crear nueva reserva -->
+      <div class="nueva-reserva-section">
+        <a href="/pages/cliente/cliente.html" class="btn-nueva-reserva">
+          ➕ Crear Nueva Reserva
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Detalles -->
+  <div id="modalDetalles" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="cerrarModal()">&times;</span>
+      <h2>Detalles de Reserva</h2>
+      <div id="detallesContenido"></div>
+    </div>
+  </div>
+
+  <script src="../../scripts/shared/config.js"></script>
+  <script src="../../scripts/shared/auth.js"></script>
+  <script src="../../scripts/shared/clienteAuth.js"></script>
+  <script src="../../scripts/shared/clienteNav.js"></script>
+  <script src="../../scripts/cliente/reservas.js"></script>
+</body>
+</html>
+

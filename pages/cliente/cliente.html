@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reservar Mesa - La Mamasa</title>
+    <link rel="stylesheet" href="../../styles/cliente/cliente.css" />
+</head>
+<body>
+  <!-- Header Superior -->
+  <div class="top-header">
+    <div class="logo-title">
+      <h1>La Mamasa</h1>
+    </div>
+  </div>
+
+  <!-- Barra de Navegación -->
+  <div class="nav-header">
+    <div class="nav-header-content">
+      <nav class="nav-links">
+        <a href="/pages/cliente/inicio.html">Inicio</a>
+        <a href="/pages/cliente/menu.html">Menú</a>
+        <a href="/pages/cliente/pedido.html">Pedidos</a>
+        <a href="/pages/cliente/reservas.html" class="active">Reservas</a>
+      </nav>
+      <div class="nav-user-actions">
+        <a href="/pages/cliente/login.html" class="user-icon-link" id="userLinkNav">
+          <span class="user-icon">👤</span>
+          <span id="userTextNav">Login</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="main-content">
+    <div class="container">
+    <div class="header">
+      <h1>🍽️ La Mamasa</h1>
+      <p>Reserva tu mesa con nosotros</p>
+    </div>
+
+    <div class="pasos">
+      <div class="paso activo" id="paso1">
+        <div class="paso-numero">1</div>
+        <div class="paso-texto">Fecha & Hora</div>
+      </div>
+      <div class="paso" id="paso2">
+        <div class="paso-numero">2</div>
+        <div class="paso-texto">Datos Personales</div>
+      </div>
+      <div class="paso" id="paso3">
+        <div class="paso-numero">3</div>
+        <div class="paso-texto">Confirmación</div>
+      </div>
+    </div>
+
+    <!-- Paso 1: Fecha y Hora -->
+    <div id="seccion1" class="seccion activa">
+      <div class="form-group">
+        <label for="fecha">Fecha de reserva</label>
+        <input type="date" id="fecha" min="" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="tipoReserva">Tipo de reserva</label>
+        <select id="tipoReserva" required>
+          <option value="">Selecciona un tipo</option>
+          <option value="desayuno">Desayuno</option>
+          <option value="almuerzo">Almuerzo</option>
+          <option value="cena">Cena</option>
+          <option value="merienda">Merienda</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="personas">Número de personas</label>
+        <select id="personas" required>
+          <option value="">Selecciona cantidad</option>
+          <option value="1">1 persona</option>
+          <option value="2">2 personas</option>
+          <option value="3">3 personas</option>
+          <option value="4">4 personas</option>
+          <option value="5">5 personas</option>
+          <option value="6">6 personas</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Horarios disponibles</label>
+        <div id="horariosContainer" class="horarios-disponibles">
+          <div class="loading">Selecciona una fecha para ver horarios disponibles</div>
+        </div>
+      </div>
+
+      <button class="btn" onclick="siguientePaso(2)" id="btnPaso1" disabled>Continuar</button>
+    </div>
+
+    <!-- Paso 2: Datos Personales -->
+    <div id="seccion2" class="seccion">
+      <div class="form-group">
+        <label for="nombre">Nombre completo</label>
+        <input type="text" id="nombre" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="telefono">Teléfono</label>
+        <input type="tel" id="telefono" required>
+      </div>
+
+      <div class="form-group">
+        <label for="notas">Notas especiales (opcional)</label>
+        <textarea id="notas" rows="3" placeholder="Alergias, preferencias, celebraciones especiales..."></textarea>
+      </div>
+
+      <div style="display: flex; gap: 10px;">
+        <button class="btn" onclick="anteriorPaso(1)">Anterior</button>
+        <button class="btn" onclick="siguientePaso(3)">Continuar</button>
+      </div>
+    </div>
+
+    <!-- Paso 3: Confirmación -->
+    <div id="seccion3" class="seccion">
+      <h3>Resumen de tu reserva</h3>
+      <div id="resumenReserva"></div>
+
+      <div style="display: flex; gap: 10px; margin-top: 20px;">
+        <button class="btn" onclick="anteriorPaso(2)">Anterior</button>
+        <button class="btn" onclick="confirmarReserva()" id="btnConfirmar">Confirmar Reserva</button>
+      </div>
+    </div>
+
+    <!-- Paso 4: Estado de Reserva -->
+    <div id="seccion4" class="seccion">
+      <div class="exito">
+        <h2 id="tituloEstado">Reserva Pendiente</h2>
+        <p id="mensajeExito"></p>
+        <div id="estadoReservaInfo" class="estado-info">
+          <div class="estado-badge pendiente" id="estadoBadge">
+            <span>⏳ Pendiente</span>
+          </div>
+          <p id="mensajeEstado">Tu reserva está siendo revisada. Te notificaremos cuando sea confirmada o cancelada.</p>
+        </div>
+        <button class="btn" onclick="nuevaReserva()">Hacer otra reserva</button>
+      </div>
+    </div>
+
+    <div id="error" class="error" style="display: none;"></div>
+  </div>
+
+    <script src="../../scripts/cliente/cliente.js"></script>
+  </div>
+  <script src="../../scripts/shared/config.js"></script>
+  <script src="../../scripts/shared/auth.js"></script>
+  <script src="../../scripts/shared/clienteAuth.js"></script>
+  <script src="../../scripts/shared/clienteNav.js"></script>
+</body>
+</html>

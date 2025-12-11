@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inicio de Sesión - La Mamasa</title>
+  <link rel="stylesheet" href="../../styles/cliente/inicio.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+</head>
+<body>
+
+  <!-- ===== CONTENIDO PRINCIPAL ===== -->
+  <div class="main-content">
+    <!-- ===== LOGIN ===== -->
+    <main>
+      <section id="login" class="contenido visible">
+        <div id="loginSection">
+          <h2>Inicio de Sesión</h2>
+          <div class="logo-login">
+            <img src="../../assets/1.png" alt="Logo Restaurante" />
+          </div>
+
+          <form id="loginForm" method="POST">
+            <input type="email" name="correo" placeholder="Correo electrónico" required />
+            
+            <div class="password-container">
+              <input type="password" id="loginPassword" name="contrasena" placeholder="Contraseña" required />
+              <i class="fa-solid fa-eye-slash" id="toggleLoginPassword" onclick="togglePasswordVisibility('loginPassword', 'toggleLoginPassword')" style="cursor: pointer;"></i>
+            </div>
+            
+            <button type="submit">Ingresar</button>
+          </form>
+          <p id="mensajeLogin"></p>
+        </div>
+        
+        <!-- Botón de crear cuenta siempre visible (fuera de loginSection) -->
+        <div style="text-align: center; margin-top: 1rem;">
+          <button type="button" id="btnCrearCuenta" onclick="window.mostrarRegistro && window.mostrarRegistro()" style="width: 100%; max-width: 500px; padding: 14px 24px; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; background: #f5f3f0; color: #2c2c2c; border: 2px solid #d4c5a9;">Crear cuenta</button>
+        </div>
+        
+        <!-- ===== PERFIL DEL USUARIO ===== -->
+        <div id="profileSection" style="display: none;">
+          <div class="profile-container">
+            <div class="profile-header">
+              <div class="profile-avatar">
+                <span id="avatarInitialsProfile"></span>
+              </div>
+              <h2 class="profile-title">Mi Perfil</h2>
+            </div>
+            <div class="profile-info">
+              <div class="profile-item">
+                <span class="profile-label">Nombre:</span>
+                <span class="profile-value" id="nombreUsuarioProfile"></span>
+              </div>
+              <div class="profile-item">
+                <span class="profile-label">Email:</span>
+                <span class="profile-value" id="correoUsuarioProfile"></span>
+              </div>
+              <div class="profile-item">
+                <span class="profile-label">Teléfono:</span>
+                <span class="profile-value" id="telefonoUsuarioProfile"></span>
+              </div>
+              <div class="profile-item">
+                <span class="profile-label">Dirección:</span>
+                <span class="profile-value" id="direccionUsuarioProfile"></span>
+              </div>
+            </div>
+            <div class="profile-actions">
+              <button id="logoutBtnProfile" class="btn-logout">Cerrar sesión</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- ===== MODAL REGISTRO ===== -->
+  <div id="registroVentana" class="modal" style="display:none;">
+    <div class="modal-content">
+      <h3>Crear nueva cuenta</h3>
+      <form id="registroForm" onsubmit="return false;" method="post" action="javascript:void(0);">
+        <input type="text" name="nombre" id="nombreRegistro" placeholder="Nombre completo" required />
+        
+        <div class="input-group">
+          <input type="email" name="correo" id="correoRegistro" placeholder="Correo electrónico (@gmail.com)" required />
+          <p id="errorCorreo" class="error-message">⚠️ El correo debe terminar en @gmail.com</p>
+        </div>
+
+        <div class="password-container">
+          <input type="password" id="password" name="contrasena" placeholder="Contraseña" required />
+          <i class="fa-solid fa-eye-slash" id="togglePassword" onclick="togglePasswordVisibility('password', 'togglePassword')" style="cursor: pointer;"></i>
+        </div>
+        <div id="requisitosContrasena" class="requisitos-contrasena">
+          <p class="requisitos-titulo">Requisitos de seguridad:</p>
+          <ul class="requisitos-lista">
+            <li id="reqLongitud" class="requisito-item">
+              <span class="requisito-icono">❌</span>
+              <span>Mínimo 8 caracteres</span>
+            </li>
+            <li id="reqMayuscula" class="requisito-item">
+              <span class="requisito-icono">❌</span>
+              <span>Al menos 1 letra mayúscula</span>
+            </li>
+            <li id="reqNumero" class="requisito-item">
+              <span class="requisito-icono">❌</span>
+              <span>Al menos 1 número</span>
+            </li>
+            <li id="reqSimbolo" class="requisito-item">
+              <span class="requisito-icono">❌</span>
+              <span>Al menos 1 símbolo especial</span>
+            </li>
+          </ul>
+        </div>
+        <p id="errorSeguridad" class="error-message" style="display: none;">
+          ⚠️ La contraseña no cumple con todos los requisitos de seguridad.
+        </p>
+
+        <div class="password-container">
+          <input type="password" id="confirmPassword" placeholder="Confirmar contraseña" required />
+          <i class="fa-solid fa-eye-slash" id="toggleConfirmPassword" onclick="togglePasswordVisibility('confirmPassword', 'toggleConfirmPassword')" style="cursor: pointer;"></i>
+        </div>
+        <p id="errorConfirmacion" class="error-message">⚠️ Las contraseñas no coinciden</p>
+
+        <input type="text" name="telefono" id="telefonoRegistro" placeholder="Teléfono" required />
+        <input type="text" name="direccion" id="direccionRegistro" placeholder="Dirección" required />
+        
+        <div class="modal-buttons">
+          <button type="button" id="btnRegistrar" onclick="window.procesarRegistro && window.procesarRegistro()">Registrar</button>
+          <button type="button" id="btnCancelarRegistro" onclick="window.cerrarRegistro && window.cerrarRegistro()">Cancelar</button>
+        </div>
+      </form>
+      <p id="mensajeRegistro"></p>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Restaurante Mamasa.</p>
+  </footer>
+
+  <!-- Funciones de modal definidas antes de cargar otros scripts -->
+  <script>
+    // Función para mostrar/ocultar contraseña
+    // Estado inicial: contraseña oculta = ojo con raya (fa-eye-slash)
+    // Al hacer clic: contraseña visible = ojo normal (fa-eye)
+    function togglePasswordVisibility(inputId, iconId) {
+      var input = document.getElementById(inputId);
+      var icon = document.getElementById(iconId);
+      
+      if (input && icon) {
+        if (input.type === 'password') {
+          // Mostrar contraseña
+          input.type = 'text';
+          icon.classList.remove('fa-eye-slash');
+          icon.classList.add('fa-eye');
+        } else {
+          // Ocultar contraseña
+          input.type = 'password';
+          icon.classList.remove('fa-eye');
+          icon.classList.add('fa-eye-slash');
+        }
+      }
+    }
+    
+    // Hacer disponible globalmente
+    window.togglePasswordVisibility = togglePasswordVisibility;
+    
+    // Función para validar requisitos de contraseña en tiempo real
+    function validarRequisitosContrasena() {
+      var password = document.getElementById('password').value;
+      
+      // Validar cada requisito
+      var tieneLongitud = password.length >= 8;
+      var tieneMayuscula = /[A-Z]/.test(password);
+      var tieneNumero = /[0-9]/.test(password);
+      var tieneSimbolo = /[!@#$%^&*()_\-+={}[\]|:;"'<>,.?/~]/.test(password);
+      
+      // Actualizar íconos
+      actualizarRequisito('reqLongitud', tieneLongitud);
+      actualizarRequisito('reqMayuscula', tieneMayuscula);
+      actualizarRequisito('reqNumero', tieneNumero);
+      actualizarRequisito('reqSimbolo', tieneSimbolo);
+    }
+    
+    // Función para actualizar el ícono de un requisito
+    function actualizarRequisito(id, cumple) {
+      var elemento = document.getElementById(id);
+      if (elemento) {
+        var icono = elemento.querySelector('.requisito-icono');
+        if (icono) {
+          if (cumple) {
+            icono.textContent = '✅';
+            elemento.style.color = '#198754';
+          } else {
+            icono.textContent = '❌';
+            elemento.style.color = '#dc3545';
+          }
+        }
+      }
+    }
+    
+    // Función para validar confirmación de contraseña en tiempo real
+    function validarConfirmacionContrasena() {
+      var password = document.getElementById('password').value;
+      var confirmPassword = document.getElementById('confirmPassword').value;
+      var errorMsg = document.getElementById('errorConfirmacion');
+      
+      if (confirmPassword.length > 0) {
+        if (password === confirmPassword) {
+          if (errorMsg) {
+            errorMsg.textContent = '✅ Las contraseñas coinciden';
+            errorMsg.style.display = 'block';
+            errorMsg.style.color = '#198754';
+          }
+        } else {
+          if (errorMsg) {
+            errorMsg.textContent = '⚠️ Las contraseñas no coinciden';
+            errorMsg.style.display = 'block';
+            errorMsg.style.color = '#dc3545';
+          }
+        }
+      } else {
+        if (errorMsg) {
+          errorMsg.style.display = 'none';
+        }
+      }
+    }
+    
+    // Configurar event listeners cuando el DOM esté listo
+    document.addEventListener('DOMContentLoaded', function() {
+      var passwordInput = document.getElementById('password');
+      var confirmInput = document.getElementById('confirmPassword');
+      
+      if (passwordInput) {
+        passwordInput.addEventListener('input', function() {
+          validarRequisitosContrasena();
+          validarConfirmacionContrasena();
+        });
+      }
+      
+      if (confirmInput) {
+        confirmInput.addEventListener('input', validarConfirmacionContrasena);
+      }
+    });
+    
+    // Función para abrir el modal de registro
+    function mostrarRegistro() {
+      console.log('🔍 mostrarRegistro() - Abriendo modal');
+      var modal = document.getElementById('registroVentana');
+      if (modal) {
+        modal.style.cssText = 'display: flex !important; position: fixed !important; top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important; background: rgba(0, 0, 0, 0.7) !important; justify-content: center !important; align-items: center !important; z-index: 99999 !important;';
+        document.body.style.overflow = 'hidden';
+        console.log('✅ Modal abierto');
+      } else {
+        alert('Error: Modal no encontrado');
+      }
+    }
+    
+    // Función para cerrar el modal de registro
+    function cerrarRegistro() {
+      console.log('🔍 cerrarRegistro() - Cerrando modal');
+      var modal = document.getElementById('registroVentana');
+      if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+        var form = document.getElementById('registroForm');
+        if (form) form.reset();
+        console.log('✅ Modal cerrado');
+      }
+    }
+    
+    // Función para procesar el registro
+    async function procesarRegistro() {
+      console.log('🔍 procesarRegistro() - Iniciando registro');
+      
+      var form = document.getElementById('registroForm');
+      var msg = document.getElementById('mensajeRegistro');
+      
+      if (!form) {
+        alert('Error: Formulario no encontrado');
+        return;
+      }
+      
+      // Obtener valores
+      var nombre = document.getElementById('nombreRegistro').value.trim();
+      var correo = document.getElementById('correoRegistro').value.trim();
+      var contrasena = document.getElementById('password').value;
+      var confirmPassword = document.getElementById('confirmPassword').value;
+      var telefono = document.getElementById('telefonoRegistro').value.trim();
+      var direccion = document.getElementById('direccionRegistro').value.trim();
+      
+      // Validaciones
+      if (!nombre || !correo || !contrasena || !confirmPassword || !telefono || !direccion) {
+        if (msg) {
+          msg.textContent = '⚠️ Por favor, completa todos los campos.';
+          msg.style.cssText = 'display: block; color: #dc3545; background: #f8d7da; padding: 10px; border-radius: 8px; margin-top: 10px;';
+        }
+        return;
+      }
+      
+      if (!correo.toLowerCase().endsWith('@gmail.com')) {
+        if (msg) {
+          msg.textContent = '⚠️ El correo debe terminar en @gmail.com';
+          msg.style.cssText = 'display: block; color: #dc3545; background: #f8d7da; padding: 10px; border-radius: 8px; margin-top: 10px;';
+        }
+        return;
+      }
+      
+      // Validar contraseña segura
+      var tieneLongitud = contrasena.length >= 8;
+      var tieneMayuscula = /[A-Z]/.test(contrasena);
+      var tieneNumero = /[0-9]/.test(contrasena);
+      var tieneSimbolo = /[!@#$%^&*()_\-+={}[\]|:;"'<>,.?/~]/.test(contrasena);
+      
+      if (!tieneLongitud || !tieneMayuscula || !tieneNumero || !tieneSimbolo) {
+        if (msg) {
+          msg.textContent = '⚠️ La contraseña debe tener mínimo 8 caracteres, una mayúscula, un número y un símbolo.';
+          msg.style.cssText = 'display: block; color: #dc3545; background: #f8d7da; padding: 10px; border-radius: 8px; margin-top: 10px;';
+        }
+        return;
+      }
+      
+      if (contrasena !== confirmPassword) {
+        if (msg) {
+          msg.textContent = '⚠️ Las contraseñas no coinciden.';
+          msg.style.cssText = 'display: block; color: #dc3545; background: #f8d7da; padding: 10px; border-radius: 8px; margin-top: 10px;';
+        }
+        return;
+      }
+      
+      // Mostrar mensaje de carga
+      if (msg) {
+        msg.textContent = '⏳ Registrando...';
+        msg.style.cssText = 'display: block; color: #0d6efd; background: #cfe2ff; padding: 10px; border-radius: 8px; margin-top: 10px;';
+      }
+      
+      // Enviar al servidor
+      try {
+        var response = await fetch('http://localhost:3000/api/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            nombre: nombre,
+            correo: correo.toLowerCase(),
+            contrasena: contrasena,
+            telefono: telefono,
+            direccion: direccion
+          })
+        });
+        
+        var data = await response.json();
+        
+        if (response.ok) {
+          if (msg) {
+            msg.textContent = '✅ Registro exitoso. Redirigiendo...';
+            msg.style.cssText = 'display: block; color: #198754; background: #d1e7dd; padding: 10px; border-radius: 8px; margin-top: 10px;';
+          }
+          setTimeout(function() {
+            cerrarRegistro();
+            window.location.href = '/pages/cliente/login.html';
+          }, 1500);
+        } else {
+          if (msg) {
+            msg.textContent = data.error || '❌ Error al registrar. Intenta nuevamente.';
+            msg.style.cssText = 'display: block; color: #dc3545; background: #f8d7da; padding: 10px; border-radius: 8px; margin-top: 10px;';
+          }
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        if (msg) {
+          msg.textContent = '❌ Error de conexión. Verifica que el servidor esté funcionando.';
+          msg.style.cssText = 'display: block; color: #dc3545; background: #f8d7da; padding: 10px; border-radius: 8px; margin-top: 10px;';
+        }
+      }
+    }
+    
+    // Hacer disponibles globalmente
+    window.mostrarRegistro = mostrarRegistro;
+    window.cerrarRegistro = cerrarRegistro;
+    window.procesarRegistro = procesarRegistro;
+    console.log('✅ Funciones de modal listas');
+  </script>
+  
+  <script src="../../scripts/shared/config.js"></script>
+  <script src="../../scripts/shared/auth.js"></script>
+  <script src="../../scripts/shared/clienteAuth.js"></script>
+  <script src="../../scripts/cliente/login.js"></script>
+</body>
+</html>
+

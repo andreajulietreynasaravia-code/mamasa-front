@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi Perfil - Restaurante</title>
+  <link rel="stylesheet" href="../../styles/cliente/styles.css" />
+  <!-- login.css no existe, se usa user.css -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+    <link rel="stylesheet" href="../../styles/cliente/user.css" />
+</head>
+<body>
+  <!-- ===== HEADER SUPERIOR ===== -->
+  <div class="top-header" id="topHeaderNav">
+    <div class="logo-title">
+      <h1>La Mamasa</h1>
+    </div>
+  </div>
+
+  <!-- ===== BARRA DE NAVEGACIÓN ===== -->
+  <div class="nav-header" id="navHeaderNav">
+    <div class="nav-header-content">
+      <nav class="nav-links">
+        <a href="/pages/cliente/inicio.html">Inicio</a>
+        <a href="/pages/cliente/menu.html">Menú</a>
+        <a href="/pages/cliente/pedido.html">Pedidos</a>
+        <a href="/pages/cliente/reservas.html">Reservas</a>
+      </nav>
+      <div class="nav-user-actions">
+        <a id="loginLink" href="/pages/cliente/login.html" class="user-icon-link">
+          <span class="user-icon">👤</span>
+          <span id="userTextNav">Login</span>
+        </a>
+        <div id="userDropdown" class="user-dropdown">
+          <div class="profile-header">
+            <div class="profile-avatar">
+              <span id="avatarInitials"></span>
+            </div>
+            <h3 class="profile-title">Profile information</h3>
+          </div>
+          <div class="profile-info">
+            <div class="profile-item">
+              <span class="profile-label">Name:</span>
+              <span class="profile-value" id="nombreUsuario"></span>
+            </div>
+            <div class="profile-item">
+              <span class="profile-label">Email:</span>
+              <span class="profile-value" id="correoUsuario"></span>
+            </div>
+            <div class="profile-item">
+              <span class="profile-label">Teléfono:</span>
+              <span class="profile-value" id="telefonoUsuario"></span>
+            </div>
+            <div class="profile-item">
+              <span class="profile-label">Dirección:</span>
+              <span class="profile-value" id="direccionUsuario"></span>
+            </div>
+          </div>
+          <div class="profile-actions">
+            <button id="logoutBtn" class="btn-logout">Cerrar sesión</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PERFIL DEL USUARIO ===== -->
+  <main>
+    <section id="profileSection" class="contenido visible">
+      <div class="profile-container">
+        <div class="profile-header">
+          <div class="profile-avatar">
+            <span id="avatarInitialsProfile"></span>
+          </div>
+          <h2 class="profile-title">Mi Perfil</h2>
+        </div>
+        <div class="profile-info">
+          <div class="profile-item">
+            <span class="profile-label">Nombre:</span>
+            <span class="profile-value" id="nombreUsuarioProfile"></span>
+          </div>
+          <div class="profile-item">
+            <span class="profile-label">Email:</span>
+            <span class="profile-value" id="correoUsuarioProfile"></span>
+          </div>
+          <div class="profile-item">
+            <span class="profile-label">Teléfono:</span>
+            <span class="profile-value" id="telefonoUsuarioProfile"></span>
+          </div>
+          <div class="profile-item">
+            <span class="profile-label">Dirección:</span>
+            <span class="profile-value" id="direccionUsuarioProfile"></span>
+          </div>
+        </div>
+        <div class="profile-actions">
+          <button id="logoutBtnProfile" class="btn-logout">Cerrar sesión</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Restaurante Mamasa.</p>
+  </footer>
+
+  <script src="../../scripts/shared/config.js"></script>
+  <script src="../../scripts/shared/auth.js"></script>
+  <script src="../../scripts/shared/clienteAuth.js"></script>
+  <script src="../../scripts/shared/clienteNav.js"></script>
+  <script src="../../scripts/cliente/user.js"></script>
+</body>
+</html>

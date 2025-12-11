@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inicio | La Mamasa</title>
+    <link rel="stylesheet" href="../../styles/cliente/inicio.css" />
+</head>
+<body>
+  <!-- Header Superior -->
+  <div class="top-header">
+    <div class="logo-title">
+      <h1>La Mamasa</h1>
+    </div>
+  </div>
+
+  <!-- Barra de Navegación -->
+  <div class="nav-header">
+    <div class="nav-header-content">
+      <nav class="nav-links">
+        <a href="/pages/cliente/inicio.html" class="active">Inicio</a>
+        <a href="/pages/cliente/menu.html">Menú</a>
+        <a href="/pages/cliente/pedido.html">Pedidos</a>
+        <a href="/pages/cliente/reservas.html">Reservas</a>
+      </nav>
+      <div class="nav-user-actions">
+        <a href="/pages/cliente/login.html" class="user-icon-link" id="userLinkNav">
+          <span class="user-icon">👤</span>
+          <span id="userTextNav">Login</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <!-- Hero Section -->
+    <div class="hero-section">
+      <div class="carousel-container" style="position: relative; width: 100%; height: 100%;">
+        <div class="carousel-wrapper" style="position: relative; width: 100%; height: 100%; overflow: hidden;">
+          <div class="carousel-slides" id="carouselSlides" style="display: flex; transition: transform 0.6s ease-in-out; height: 100%;">
+            <div class="carousel-slide" style="min-width: 100%; height: 100%; position: relative;">
+              <img src="imagenes/carrusel1.jpg" alt="Restaurante La Mamasa" class="hero-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+              <div style="display: none; width: 100%; height: 100%; background: linear-gradient(135deg, #8b7355 0%, #6b5d4f 100%);"></div>
+            </div>
+            <div class="carousel-slide" style="min-width: 100%; height: 100%; position: relative;">
+              <img src="imagenes/carrusel2.jpg" alt="Restaurante La Mamasa" class="hero-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+              <div style="display: none; width: 100%; height: 100%; background: linear-gradient(135deg, #8b7355 0%, #6b5d4f 100%);"></div>
+            </div>
+            <div class="carousel-slide" style="min-width: 100%; height: 100%; position: relative;">
+              <img src="imagenes/carrusel3.jpg" alt="Restaurante La Mamasa" class="hero-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+              <div style="display: none; width: 100%; height: 100%; background: linear-gradient(135deg, #8b7355 0%, #6b5d4f 100%);"></div>
+            </div>
+            <div class="carousel-slide" style="min-width: 100%; height: 100%; position: relative;">
+              <img src="imagenes/carrusel4.jpg" alt="Restaurante La Mamasa" class="hero-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+              <div style="display: none; width: 100%; height: 100%; background: linear-gradient(135deg, #8b7355 0%, #6b5d4f 100%);"></div>
+            </div>
+          </div>
+          <button class="carousel-nav prev" onclick="moveCarousel(-1)" style="position: absolute; top: 50%; left: 20px; transform: translateY(-50%); background: rgba(255, 255, 255, 0.9); border: none; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #8b0000; z-index: 3;">‹</button>
+          <button class="carousel-nav next" onclick="moveCarousel(1)" style="position: absolute; top: 50%; right: 20px; transform: translateY(-50%); background: rgba(255, 255, 255, 0.9); border: none; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #8b0000; z-index: 3;">›</button>
+          <div class="carousel-indicators" id="carouselIndicators" style="position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 3;"></div>
+        </div>
+      </div>
+      <div class="hero-overlay">
+        <div class="hero-text">Saborea la Experiencia</div>
+        <a href="/pages/cliente/menu.html" class="hero-btn">Ver Menú</a>
+      </div>
+    </div>
+
+    <!-- Secciones de Contenido -->
+    <div class="content-sections">
+      <!-- Nuestra Historia -->
+      <div class="content-block">
+        <h2>Nuestra Historia</h2>
+        <img src="imagenes/carrusel1.jpg" alt="Restaurante La Mamasa" class="content-image" onerror="this.style.display='none';">
+        <p class="content-text">
+          En Restaurante La Mamasa nos apasiona conservar la auténtica sazón peruana con recetas caseras llenas de tradición y cariño. Ofrecemos platos preparados con ingredientes frescos y el toque hogareño que nos caracteriza, para que cada visita sea una experiencia deliciosa y memorable.
+        </p>
+      </div>
+
+      <!-- Especial del Día -->
+      <div class="content-block">
+        <h3>Especial del Día</h3>
+        <p class="content-text" style="margin-bottom: 1rem; font-weight: 600; color: #8b0000;">Plato del Chef - Rico, Meloso e Inolvidable</p>
+        <img src="imagenes/carrusel2.jpg" alt="Especial del día" class="content-image" style="height: 250px;" onerror="this.style.display='none';">
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <h3>La Mamasa</h3>
+        <p style="font-size: 12px; color: #999;">El sabor tradicional que une familias</p>
+      </div>
+      <div class="footer-section">
+        <h4>Contacto</h4>
+        <p>📞 <a href="tel:924599135">924 599 135</a></p>
+        <p>✉️ <a href="mailto:restaurantelamamasa@gmail.com">restaurantelamamasa@gmail.com</a></p>
+        <p>📍 Av. Mariscal Benavides 1227<br>San Vicente de Cañete, Perú</p>
+      </div>
+      <div class="footer-section">
+        <h4>Horario</h4>
+        <p><strong>Lunes - Domingo</strong></p>
+        <p>8:00 AM - 9:00 PM</p>
+      </div>
+      <div class="footer-section">
+        <h4>Ubicación</h4>
+        <div class="footer-map">
+          <a href="https://www.google.com/maps/search/?api=1&query=Av.+Mariscal+Benavides+1227,+San+Vicente+de+Cañete,+Perú" target="_blank" style="display: block; width: 100%; height: 100%; background: #1a1a1a; color: #b8b8b8; text-align: center; line-height: 150px; text-decoration: none;">
+            Ver en Google Maps 🗺️
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <script src="../../scripts/shared/config.js"></script>
+    <script src="../../scripts/shared/auth.js"></script>
+    <script src="../../scripts/shared/clienteAuth.js"></script>
+    <script src="../../scripts/shared/clienteNav.js"></script>
+    <script src="../../scripts/cliente/inicio.js"></script>
+</body>
+</html>
+
