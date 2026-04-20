@@ -1,27 +1,17 @@
 name: Control de Calidad mamasa-front
 
-on:
-  push:
-    branches: [ principal ]  # Se ejecuta cada vez que subes algo a 'principal'
-  pull_request:
-    branches: [ principal ]
+on: [push]
 
 jobs:
   verificacion:
     runs-on: ubuntu-latest
+
     steps:
-      - name: 1. Clonar código
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: 2. Instalar Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: 18
 
-      - name: 3. Instalar dependencias (Compilación)
-        run: npm install
-
-      - name: 4. Ejecutar Pruebas Automáticas
-        # Si aún no tienes pruebas escritas, este comando fallará.
-        # Puedes usar 'npm test || echo "Sin pruebas configuradas"' para que no se detenga.
-        run: npm test
+      - run: npm install
+      - run: npm test
