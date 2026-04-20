@@ -9,7 +9,8 @@
   },
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "test": "node test.js"
   },
   "keywords": [
     "frontend",
@@ -26,6 +27,3 @@
     "nodemon": "^3.0.1"
   }
 }
-
-
-
