@@ -1,17 +1,23 @@
 name: Control de Calidad mamasa-front
 
-on: [push]
+on:
+  push:
+    branches: [ principal ]
 
 jobs:
   verificacion:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4
+      - name: 1. Clonar código
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: 2. Configurar Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: '18'
 
-      - run: npm install
-      - run: npm test
+      - name: 3. Instalar dependencias
+        run: npm install
+
+      - name: 4. Ejecutar Pruebas
+        run: npm test
